@@ -1,0 +1,19 @@
+Every button press on the remote seems to send two frames of information to the
+air conditioner with a 30ms gap in between. The first frame is 8 bytes long and
+the second frame is 19 bytes long.
+
+First frame:
+
+     0  ________ ________ ________ ________
+     4  ________ ________ ________ ________
+
+Second frame:
+
+     0  ________ ________ ________ ________
+     4  ________ ________ __TTTTT_ ________
+     8  ________ ________ ________ ________
+    12  ________ ________ ________ ________
+    16  ________ ________ __TTTTT_
+
+    TTTTT - five bit unsigned integer representing temperature in degrees.
+            this appears twice in the command for some reason.
