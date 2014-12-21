@@ -52,12 +52,7 @@ print_bin_byte(uint8_t byte)
 int
 get_temperature(command_t* cmd)
 {
-    int temp_one = (cmd->second_part[6]  >> 1) & 0x1f;
-    int temp_two = (cmd->second_part[18] >> 1) & 0x1f;
-
-    assert(temp_one == temp_two);
-
-    return temp_one;
+    return (cmd->second_part[6]  >> 1) & 0x1f;
 }
 
 int
