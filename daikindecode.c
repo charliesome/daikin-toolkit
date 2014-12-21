@@ -143,7 +143,7 @@ main()
             break;
         }
 
-        if(get_fan_strength(&cmd) & 0xf) {
+        if(get_fan_strength(&cmd) & 0x8) {
             printf("Fan strength:  auto\n");
         } else {
             printf("Fan strength:  %d/5\n", get_fan_strength(&cmd) - 2);
