@@ -38,5 +38,5 @@ Second frame:
     16  ________
     17  ________
     18  __??????    ??????  not sure. seems to have some sort of weird
-                            interaction between powerful mode, swing mode and
-                            temperature.
+                            interaction between powerful mode, swing mode, fan
+                            mode and temperature. possibly a checksum?
