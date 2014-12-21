@@ -60,13 +60,13 @@ main(int argc, const char** argv)
             bits_written = 0;
             bytes_written = 0;
         } else if(space_len > 800) {
-            // 0 bit
-            cur_bit <<= 1;
-            bits_written++;
-        } else {
             // 1 bit
             cur_bit <<= 1;
             cur_bit |= 1;
+            bits_written++;
+        } else {
+            // 0 bit
+            cur_bit <<= 1;
             bits_written++;
         }
 
