@@ -4,9 +4,9 @@ the second frame is 19 bytes long.
 
 First frame:
 
-     0  ________
-     1  ________
-     2  ________
+     0  00010001    \
+     1  11011010    |- header
+     2  00100111    /
      3  ________
      4  ________
      5  ________
@@ -15,13 +15,13 @@ First frame:
 
 Second frame:
 
-     0  ________
-     1  ________
-     2  ________
+     0  00010001    \
+     1  11011010    |- header
+     2  00100111    /
      3  ________
      4  ________
-     5  _______P    P     - power state. 1 if AC is on, 0 if AC is off.
-     6  __TTTTT_    TTTTT - five bit unsigned integer representing temperature
+     5  _______P    P       power state. 1 if AC is on, 0 if AC is off.
+     6  __TTTTT_    TTTTT   five bit unsigned integer representing temperature
                             in degrees celcius
      7  ________
      8  ________
