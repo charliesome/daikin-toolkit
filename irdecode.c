@@ -44,7 +44,7 @@ main(int argc, const char** argv)
     }
 
     int bits_written = 0;
-    uint8_t cur_bit = 0;
+    uint8_t cur_byte = 0;
 
     while(1) {
         int space_len, pulse_len;
@@ -52,22 +52,22 @@ main(int argc, const char** argv)
 
         if(space_len > 1600) {
             // new frame
-            cur_bit = 0;
+            cur_byte = 0;
             bits_written = 0;
         } else if(space_len > 800) {
             // 1 bit
-            cur_bit >>= 1;
-            cur_bit |= 0x80;
+            cur_byte >>= 1;
+            cur_byte |= 0x80;
             bits_written++;
         } else {
             // 0 bit
-            cur_bit >>= 1;
+            cur_byte >>= 1;
             bits_written++;
         }
 
         if(bits_written == 8) {
-            putc(cur_bit, stdout);
-            cur_bit = 0;
+            putc(cur_byte, stdout);
+            cur_byte = 0;
             bits_written = 0;
         }
 
