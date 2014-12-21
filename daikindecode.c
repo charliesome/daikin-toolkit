@@ -62,6 +62,12 @@ get_power_state(command_t* cmd)
 }
 
 int
+get_fan_strength(command_t* cmd)
+{
+    return (cmd->second_part[8] >> 4)
+}
+
+int
 main()
 {
     while(1) {
@@ -70,6 +76,12 @@ main()
         print_command(&cmd);
         printf("Temperature:   %d C\n", get_temperature(&cmd));
         printf("Power:         %s\n", get_power_state(&cmd) ? "on" : "off");
+
+        if(get_fan_strength(&cmd) & 0xf) {
+            printf("Fan strength:  automatic\n");
+        } else {
+            printf("Fan strength:  %d/5\n", get_fan_strength(&cmd) - 2);
+        }
 
         printf("\n");
     }
