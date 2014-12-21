@@ -52,7 +52,13 @@ print_bin_byte(uint8_t byte)
 int
 get_temperature(command_t* cmd)
 {
-    return (cmd->second_part[6]  >> 1) & 0x1f;
+    return (cmd->second_part[6] >> 1) & 0x1f;
+}
+
+int
+get_power_state(command_t* cmd)
+{
+    return cmd->second_part[5] & 1;
 }
 
 int
@@ -62,7 +68,8 @@ main()
         command_t cmd = read_command();
 
         print_command(&cmd);
-        printf("Temperature: %d C\n", get_temperature(&cmd));
+        printf("Temperature:   %d C\n", get_temperature(&cmd));
+        printf("Power:         %s\n", get_power_state(&cmd) ? "on" : "off");
 
         printf("\n");
     }

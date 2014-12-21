@@ -20,7 +20,7 @@ Second frame:
      2  ________
      3  ________
      4  ________
-     5  ________
+     5  _______P    P     - power state. 1 if AC is on, 0 if AC is off.
      6  __TTTTT_    TTTTT - five bit unsigned integer representing temperature
                             in degrees celcius
      7  ________
@@ -34,6 +34,7 @@ Second frame:
     15  ________
     16  ________
     17  ________
-    18  __TTTTT_    TTTTT - five bit unsigned integer representing temperature
-                            in degrees celcius plus one (ie. if the AC is set
-                            at 18C, this will be 19). Dunno what this is for.
+    18  __TTTTTP    TTTTT - five bit unsigned integer representing temperature
+                            in degrees celcius. this value will have 1 added to
+                            it if the air conditioner is turned on. dunno why.
+                    P     - inverse power state. 0 if AC is on, 1 if AC is off.
