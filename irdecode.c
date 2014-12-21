@@ -44,6 +44,8 @@ main(int argc, const char** argv)
     }
 
     int bits_written = 0;
+    int bytes_written = 0;
+    uint8_t cur_bit = 0;
 
     while(1) {
         int space_len, pulse_len;
@@ -51,20 +53,28 @@ main(int argc, const char** argv)
 
         if(space_len > 1600) {
             // new frame
-            printf("\n");
+            if(bytes_written) {
+                printf("\n");
+            }
+            cur_bit = 0;
+            bits_written = 0;
+            bytes_written = 0;
         } else if(space_len > 800) {
             // 0 bit
-            printf("0");
+            cur_bit <<= 1;
             bits_written++;
         } else {
             // 1 bit
-            printf("1");
+            cur_bit <<= 1;
+            cur_bit |= 1;
             bits_written++;
         }
 
         if(bits_written == 8) {
+            printf("%02x ", (int)cur_bit);
+            cur_bit = 0;
             bits_written = 0;
-            printf(" ");
+            bytes_written++;
         }
 
         fflush(stdout);
