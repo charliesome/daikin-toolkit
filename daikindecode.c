@@ -74,12 +74,39 @@ get_swing_mode(command_t* cmd)
 }
 
 int
+verify_checksums(command_t* cmd)
+{
+    uint8_t sum = 0;
+
+    for(int i = 0; i < 7; i++) {
+        sum += cmd->first_part[i];
+    }
+
+    if(sum != cmd->first_part[7]) {
+        return 0;
+    }
+
+    sum = 0;
+
+    for(int i = 0; i < 18; i++) {
+        sum += cmd->second_part[i];
+    }
+
+    if(sum != cmd->second_part[18]) {
+        return 0;
+    }
+
+    return 1;
+}
+
+int
 main()
 {
     while(1) {
         command_t cmd = read_command();
 
         print_command(&cmd);
+        printf("Checksum:      %s\n", verify_checksums(&cmd) ? "valid" : "invalid");
         printf("Temperature:   %d C\n", get_temperature(&cmd));
         printf("Power:         %s\n", get_power_state(&cmd) ? "on" : "off");
 
