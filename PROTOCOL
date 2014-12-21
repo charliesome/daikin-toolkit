@@ -34,8 +34,6 @@ Second frame:
     15  ________
     16  ________
     17  ________
-    18  __TTTTTP    TTTTT - five bit unsigned integer representing temperature
-                            in degrees celcius. this value will have 1 added to
-                            it if the air conditioner is turned on. dunno why.
-                    P     - powerful mode state. 1 if powerful mode is on, 0 if
-                            powerful mode is off. oddly, 1 if entire AC is off.
+    18  __??????    ??????  not sure. seems to have some sort of weird
+                            interaction between powerful mode, swing mode and
+                            temperature.

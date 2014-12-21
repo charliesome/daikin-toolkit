@@ -62,12 +62,6 @@ get_power_state(command_t* cmd)
 }
 
 int
-get_powerful_mode(command_t* cmd)
-{
-    return cmd->second_part[18] & 1;
-}
-
-int
 main()
 {
     while(1) {
@@ -76,7 +70,6 @@ main()
         print_command(&cmd);
         printf("Temperature:   %d C\n", get_temperature(&cmd));
         printf("Power:         %s\n", get_power_state(&cmd) ? "on" : "off");
-        printf("Powerful mode: %s\n", get_powerful_mode(&cmd) ? "on" : "off");
 
         printf("\n");
     }
