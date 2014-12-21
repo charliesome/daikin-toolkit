@@ -15,5 +15,5 @@ Second frame:
     12  ________ ________ ________ ________
     16  ________ ________ __TTTTT_
 
-    TTTTT - five bit unsigned integer representing temperature in degrees.
-            this appears twice in the command for some reason.
+    TTTTT - five bit unsigned integer representing temperature in degrees
+            celcius. this appears twice in the command for some reason.
