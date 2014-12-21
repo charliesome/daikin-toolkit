@@ -4,16 +4,36 @@ the second frame is 19 bytes long.
 
 First frame:
 
-     0  ________ ________ ________ ________
-     4  ________ ________ ________ ________
+     0  ________
+     1  ________
+     2  ________
+     3  ________
+     4  ________
+     5  ________
+     6  ________
+     7  ________
 
 Second frame:
 
-     0  ________ ________ ________ ________
-     4  ________ ________ __TTTTT_ ________
-     8  ________ ________ ________ ________
-    12  ________ ________ ________ ________
-    16  ________ ________ __TTTTT_
-
-    TTTTT - five bit unsigned integer representing temperature in degrees
-            celcius. this appears twice in the command for some reason.
+     0  ________
+     1  ________
+     2  ________
+     3  ________
+     4  ________
+     5  ________
+     6  __TTTTT_    TTTTT - five bit unsigned integer representing temperature
+                            in degrees celcius
+     7  ________
+     8  ________
+     9  ________
+    10  ________
+    11  ________
+    12  ________
+    13  ________
+    14  ________
+    15  ________
+    16  ________
+    17  ________
+    18  __TTTTT_    TTTTT - five bit unsigned integer representing temperature
+                            in degrees celcius plus one (ie. if the AC is set
+                            at 18C, this will be 19). Dunno what this is for.
