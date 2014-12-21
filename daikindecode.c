@@ -1,9 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdint.h>
+#include <assert.h>
 
 typedef struct {
-    char first_part[8];
-    char second_part[19];
+    uint8_t first_part[8];
+    uint8_t second_part[19];
 }
 command_t;
 
@@ -19,26 +21,54 @@ read_command()
     return command;
 }
 
+void
+print_command(command_t* command)
+{
+    for(int i = 0; i < 8; i++) {
+        printf("%02x ", command->first_part[i]);
+    }
+
+    for(int i = 0; i < 19; i++) {
+        printf("%02x ", command->second_part[i]);
+    }
+    printf("\n");
+}
+
+void
+print_bin_byte(uint8_t byte)
+{
+    for(int i = 0; i < 8; i++) {
+        if(i == 4) {
+            putc(' ', stdout);
+        }
+
+        putc((byte & 0x80) ? '1' : '0', stdout);
+        byte <<= 1;
+    }
+
+    putc('\n', stdout);
+}
+
+int
+get_temperature(command_t* cmd)
+{
+    int temp_one = (cmd->second_part[6]  >> 1) & 0x1f;
+    int temp_two = (cmd->second_part[18] >> 1) & 0x1f;
+
+    assert(temp_one == temp_two);
+
+    return temp_one;
+}
+
 int
 main()
 {
     while(1) {
         command_t cmd = read_command();
 
-        printf("first part:  ");
-
-        for(int i = 0; i < 8; i++) {
-            printf("%02x ", cmd.first_part[i]);
-        }
+        print_command(&cmd);
+        printf("Temperature: %d C\n", get_temperature(&cmd));
 
         printf("\n");
-
-        printf("second part: ");
-
-        for(int i = 0; i < 19; i++) {
-            printf("%02x ", cmd.second_part[i]);
-        }
-
-        printf("\n\n");
     }
 }
