@@ -25,10 +25,11 @@ Second frame:
      6  __TTTTT_    TTTTT   five bit unsigned integer representing temperature
                             in degrees celcius
      7  ________
-     8  AFFF____    A       1 if fan is on automatic mode, 0 if manually set
+     8  AFFFS___    A       1 if fan is on automatic mode, 0 if manually set
                     FFF     fan strength - three bit unsigned integer. observed
                             values between 3 (lowest strength) and 7 (highest
                             strength). set to 010 if fan is on automatic mode
+                    S       swing mode - 1 if swing mode is enabled, 0 if not
      9  ________
     10  ________
     11  ________

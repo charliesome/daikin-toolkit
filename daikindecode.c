@@ -64,7 +64,13 @@ get_power_state(command_t* cmd)
 int
 get_fan_strength(command_t* cmd)
 {
-    return (cmd->second_part[8] >> 4)
+    return cmd->second_part[8] >> 4;
+}
+
+int
+get_swing_mode(command_t* cmd)
+{
+    return (cmd->second_part[8] >> 3) & 1;
 }
 
 int
@@ -82,6 +88,8 @@ main()
         } else {
             printf("Fan strength:  %d/5\n", get_fan_strength(&cmd) - 2);
         }
+
+        printf("Swing mode:    %s\n", get_swing_mode(&cmd) ? "on" : "off");
 
         printf("\n");
     }
