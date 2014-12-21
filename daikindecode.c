@@ -56,6 +56,12 @@ get_temperature(command_t* cmd)
 }
 
 int
+get_mode(command_t* cmd)
+{
+    return (cmd->second_part[5] >> 4) & 7;
+}
+
+int
 get_power_state(command_t* cmd)
 {
     return cmd->second_part[5] & 1;
@@ -116,8 +122,29 @@ main()
         printf("Temperature:   %d C\n", get_temperature(&cmd));
         printf("Power:         %s\n", get_power_state(&cmd) ? "on" : "off");
 
+        switch(get_mode(&cmd)) {
+        case 0:
+            printf("Mode:          auto\n");
+            break;
+        case 2:
+            printf("Mode:          dry\n");
+            break;
+        case 3:
+            printf("Mode:          cool\n");
+            break;
+        case 4:
+            printf("Mode:          heat\n");
+            break;
+        case 6:
+            printf("Mode:          fan\n");
+            break;
+        default:
+            printf("Mode:          unknown?\n");
+            break;
+        }
+
         if(get_fan_strength(&cmd) & 0xf) {
-            printf("Fan strength:  automatic\n");
+            printf("Fan strength:  auto\n");
         } else {
             printf("Fan strength:  %d/5\n", get_fan_strength(&cmd) - 2);
         }

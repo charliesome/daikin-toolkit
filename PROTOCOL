@@ -21,7 +21,12 @@ Second frame:
      2  00100111    /
      3  ________
      4  ________
-     5  _______P    P       power state. 1 if AC is on, 0 if AC is off.
+     5  _MMM___P    MMM     mode: auto: 000
+                                  dry:  010
+                                  cool: 011
+                                  heat: 100
+                                  fan:  110
+                    P       power state. 1 if AC is on, 0 if AC is off.
      6  __TTTTT_    TTTTT   five bit unsigned integer representing temperature
                             in degrees celcius
      7  ________
