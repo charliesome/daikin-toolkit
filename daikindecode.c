@@ -74,6 +74,12 @@ get_swing_mode(command_t* cmd)
 }
 
 int
+get_powerful_mode(command_t* cmd)
+{
+    return cmd->second_part[13] & 1;
+}
+
+int
 verify_checksums(command_t* cmd)
 {
     uint8_t sum = 0;
@@ -117,6 +123,7 @@ main()
         }
 
         printf("Swing mode:    %s\n", get_swing_mode(&cmd) ? "on" : "off");
+        printf("Powerful mode: %s\n", get_powerful_mode(&cmd) ? "on" : "off");
 
         printf("\n");
     }
