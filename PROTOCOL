@@ -11,7 +11,8 @@ First frame:
      4  ________
      5  ________
      6  ________
-     7  ________
+     7  CCCCCCCC            checksum byte. lower 8 bits of the sum of all
+                            previous bytes in this frame.
 
 Second frame:
 
@@ -37,6 +38,5 @@ Second frame:
     15  ________
     16  ________
     17  ________
-    18  ????????            not sure. seems to have some sort of weird
-                            interaction between powerful mode, swing mode, fan
-                            mode and temperature. possibly a checksum?
+    18  CCCCCCCC            checksum byte. lower 8 bits of the sum of all
+                            previous btyes in this frame.
